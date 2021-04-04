@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form>
+        <h3>{{video_url_form.video_url.label}}</h3>
+        {{video_url_form.video_url()}} {{video_url_form.submit()}}
+    </form>
+</div>
+{% endblock %}
