@@ -6,5 +6,31 @@
         <h3>{{video_url_form.video_url.label}}</h3>
         {{video_url_form.video_url()}} {{video_url_form.submit()}}
     </form>
+    <h3>{{available_downloads['title']}}</h3>
+    <div>
+        <table>
+            <tr>
+                <th>{{ _('Size') }}</th>
+                <th>{{ _('Quality') }}</th>
+                <th>{{ _('Extension') }}</th>
+                <th>{{ _('Download') }}</th>
+            </tr>
+
+            {% for video in available_downloads['videos'] %}
+            <tr>
+                <td>{{video['formatted_size']}}</td>
+                <td>{{video['quality']}}</td>
+                <td>{{video['ext']}}</td>
+                <td>
+                    <form>
+                        <input type="submit" value="{{ _('Download') }}">
+                    </form>
+                </td>
+
+                {#<td>{{video['url']}}</td>#}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 {% endblock %}

@@ -7,6 +7,7 @@ from flask import request, render_template
 
 from app import app
 from .froms import VideoUrlForm
+from .downloader import YoutubeDownloader
 
 
 @app.route('/')
@@ -18,4 +19,11 @@ def index():
     context = {
         'video_url_form': video_url_from,
     }
+
+    video_url = video_url_from.video_url.data
+    if video_url:
+        downloader = YoutubeDownloader(video_url)
+        available_downloads = downloader.get_available_downloads()
+        context['available_downloads'] = available_downloads
+
     return render_template('index.html', **context)
